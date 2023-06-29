@@ -122,11 +122,18 @@ SELECT name, ROUND(gdp/population,-3)
 -- Show the name - but substitute Australasia for Oceania - for countries beginning with N.
 
 
-SELECT name, CASE WHEN continent='Oceania' THEN 'Australasia'
-                  ELSE continent END
-  FROM world
- WHERE name LIKE 'N%'
-;
+SELECT name, LEN(name), continent, LEN(continent)
+FROM world
+WHERE name LIKE 'G%' AND LEN(name) = LEN(continent);
+-----------or----------------
+SELECT name, capital
+FROM world
+WHERE LENGTH(name) = LENGTH(capital) AND name LIKE 'G%';
+----------------------------
+SELECT name AS Country, capital AS Capital
+FROM countries
+WHERE LENGTH(name) = LENGTH(capital);
+
 
 
 -- 12.
